@@ -5,7 +5,7 @@ terraform {
       version = "5.39.1"
     }
   }
-  backend "S3" {
+  backend "s3" {
     bucket = "terra-bucket-96"
     key = "tamilcloud/terraform.tfstate"
     region = "us-east-1"
