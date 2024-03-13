@@ -57,12 +57,12 @@ variable "private_subnet_cidr_blocks" {
     ]
 }
 
-variable "db_username" {
-    description = "database master user"
-    sensitive = true
-}
+# variable "db_username" {
+#     description = "database master user"
+#     sensitive = true
+# }
 
-variable "db_password" {
-    description = "database master pwd"
-    sensitive = true
-}
+# variable "db_password" {
+#     description = "database master pwd"
+#     sensitive = true
+# }
