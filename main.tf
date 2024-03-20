@@ -72,31 +72,46 @@ resource "aws_route_table_association" "public-rt2-association" {
 resource "aws_security_group" "BastionSecurityGroup" {
   description = "Bastion Security Group"
   vpc_id = aws_vpc.my-vpc.id
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+  }
+  ingress {
+    from_port = 3306
+    to_port = 3306
+    protocol = "tcp"
+  }
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+  }
 }
 
-resource "aws_security_group_rule" "allow-http" {
-  type = "ingress"
-  from_port = 80
-  to_port = 80
-  protocol = "tcp"
-  security_group_id = aws_security_group.BastionSecurityGroup.id
-}
+# resource "aws_security_group_rule" "allow-http" {
+#   type = "ingress"
+#   from_port = 80
+#   to_port = 80
+#   protocol = "tcp"
+#   security_group_id = aws_security_group.BastionSecurityGroup.id
+# }
 
-resource "aws_security_group_rule" "allow-rdp" {
-  type = "ingress"
-  from_port = 3306
-  to_port = 3306
-  protocol = "tcp"
-  security_group_id = aws_security_group.BastionSecurityGroup.id
-}
+# resource "aws_security_group_rule" "allow-rdp" {
+#   type = "ingress"
+#   from_port = 3306
+#   to_port = 3306
+#   protocol = "tcp"
+#   security_group_id = aws_security_group.BastionSecurityGroup.id
+# }
 
-resource "aws_security_group_rule" "allow-ssh" {
-  type = "ingress"
-  from_port = 22
-  to_port = 22
-  protocol = "tcp"
-  security_group_id = aws_security_group.BastionSecurityGroup.id
-}
+# resource "aws_security_group_rule" "allow-ssh" {
+#   type = "ingress"
+#   from_port = 22
+#   to_port = 22
+#   protocol = "tcp"
+#   security_group_id = aws_security_group.BastionSecurityGroup.id
+# }
 
 resource "aws_instance" "bastion-instance"{
   ami = "ami-0e731c8a588258d0d"
