@@ -1,1 +1,1 @@
-*.yml
+.github/workflows/terraform.yml
